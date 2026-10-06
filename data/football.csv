@@ -1,0 +1,30 @@
+COMPETITION,World,
+COMPETITION,Europe,World
+COMPETITION,Turkiye,Europe
+COMPETITION,Super Lig,Turkiye
+CLUB,Fenerbahce,180000000,Super Lig
+PLAYER,Mason Greenwood,1998-03-12,FWD,75000000,Fenerbahce
+PLAYER,Ngolo Kante,1995-07-23,MID,45000000,Fenerbahce
+PLAYER,Milan Skriniar,2001-11-02,DEF,32000000,Fenerbahce
+PLAYER,Ederson Moraes,1993-01-30,GK,18000000,Fenerbahce
+CLUB,Trabzonspor,120000000,Super Lig
+PLAYER,Mohammed Salah,1999-05-19,FWD,52000000,Trabzonspor
+PLAYER,Ernest Muci,1997-09-08,MID,28000000,Trabzonspor
+PLAYER,Mustafa Eskihellac,2000-02-14,DEF,21000000,Trabzonspor
+PLAYER,Andre Onana,1994-12-25,GK,9500000,Trabzonspor
+CLUB,Galatasaray,95000000,Super Lig
+PLAYER,Victor Osimhen,1996-06-06,FWD,38000000,Galatasaray
+PLAYER,Leroy Sane,1992-10-17,MID,15000000,Galatasaray
+PLAYER,Davinson Sanchez,1999-08-29,DEF,12000000,Galatasaray
+COMPETITION,Germany,Europe
+COMPETITION,Bundesliga,Germany
+CLUB,Bayern München,150000000,Bundesliga
+PLAYER,Harry Kane,1997-04-21,FWD,68000000,Bayern München
+PLAYER,Michael Olise,1998-01-09,MID,41000000,Bayern München
+PLAYER,Kim Min Jae,2002-03-03,DEF,19500000,Bayern München
+PLAYER,Manuel Neuer,1990-07-07,GK,6000000,Bayern München
+CLUB,Borussia Dortmund,88000000,Bundesliga
+PLAYER,Maximilian Beier,2000-09-15,FWD,29000000,Borussia Dortmund
+PLAYER,Marcel Sabitzer,1996-11-28,MID,22500000,Borussia Dortmund
+PLAYER,Gregor Kobel,1999-01-02,GK,10000000,Borussia Dortmund
+PLAYER,Emre Can,1993-05-05,DEF,11000000,Borussia Dortmund
