@@ -8,8 +8,8 @@ application organises that information into one searchable hierarchy of
 competitions, from a top-level grouping down to individual leagues, so a
 user can browse everything in one place. It answers practical questions
 quickly: what is the combined market value of a league, which player is
-currently the most valuable, who plays in a given position, and where does
-a specific player play. It also supports moving a player between clubs
+currently the most valuable, who plays in a given position, and which club
+a specific player currently plays for. It also supports moving a player between clubs
 through a transfer, with checks so a transfer cannot happen if the buying
 club cannot afford the fee or the player is not actually on the selling
 club's books. All data can be saved to a file and loaded back later, so a
@@ -38,13 +38,15 @@ range of normal and edge-case inputs.
 ## Clear instructions on how to run your application
 
 - Open a terminal in the project's root folder (the folder containing `src`, `lib` and `data`).
+- Create the output folder (skip if it already exists): `mkdir bin`
 - Compile the project:
   `javac -cp "lib/junit-platform-console-standalone-1.7.2.jar" -d bin src/*.java`
 - Run the program:
   `java -cp bin Client`
 - Run the unit tests:
   `java -jar lib/junit-platform-console-standalone-1.7.2.jar -cp bin --scan-classpath`
-- Once running, type a menu number and press Enter to choose an action.
+- Once running, type a menu number and press Enter to choose an action,
+  including viewing a single club's squad.
 - The program automatically loads `data/football.csv`; use the save and
   load options in the menu to persist or reload changes made during the
   session.

@@ -33,21 +33,41 @@ public class Club {
     }
 
     public Player removePlayer(String playerName) {
-        for (int i = 0; i < squad.size(); i++) {
-            if (squad.get(i).getName().equalsIgnoreCase(playerName)) {
-                return squad.remove(i);
-            }
+        int index = indexOfPlayer(playerName);
+        if (index == -1) {
+            return null;
         }
-        return null;
+        return squad.remove(index);
     }
 
     public Player findPlayer(String playerName) {
+        int index = indexOfPlayer(playerName);
+        if (index == -1) {
+            return null;
+        }
+        return squad.get(index);
+    }
+
+    private int indexOfPlayer(String playerName) {
         for (int i = 0; i < squad.size(); i++) {
             if (squad.get(i).getName().equalsIgnoreCase(playerName)) {
-                return squad.get(i);
+                return i;
             }
         }
-        return null;
+        return -1;
+    }
+
+    /*
+     * Checks for the exact same Player object, not just a matching name,
+     * since two different clubs could each have a player with that name.
+     */
+    public boolean containsPlayer(Player player) {
+        for (int i = 0; i < squad.size(); i++) {
+            if (squad.get(i) == player) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Money squadValue() {
@@ -67,6 +87,18 @@ public class Club {
         for (int i = 0; i < squad.size(); i++) {
             Player player = squad.get(i);
             if (player.getPosition().equalsIgnoreCase(position)) {
+                result.add(player);
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<Player> searchPlayersByName(String text) {
+        ArrayList<Player> result = new ArrayList<Player>();
+        String lowerText = text.toLowerCase();
+        for (int i = 0; i < squad.size(); i++) {
+            Player player = squad.get(i);
+            if (player.getName().toLowerCase().contains(lowerText)) {
                 result.add(player);
             }
         }

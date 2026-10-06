@@ -18,11 +18,11 @@ PLAYER,Leroy Sane,1992-10-17,MID,15000000,Galatasaray
 PLAYER,Davinson Sanchez,1999-08-29,DEF,12000000,Galatasaray
 COMPETITION,Germany,Europe
 COMPETITION,Bundesliga,Germany
-CLUB,Bayern München,150000000,Bundesliga
-PLAYER,Harry Kane,1997-04-21,FWD,68000000,Bayern München
-PLAYER,Michael Olise,1998-01-09,MID,41000000,Bayern München
-PLAYER,Kim Min Jae,2002-03-03,DEF,19500000,Bayern München
-PLAYER,Manuel Neuer,1990-07-07,GK,6000000,Bayern München
+CLUB,Bayern Munchen,150000000,Bundesliga
+PLAYER,Harry Kane,1997-04-21,FWD,68000000,Bayern Munchen
+PLAYER,Michael Olise,1998-01-09,MID,41000000,Bayern Munchen
+PLAYER,Kim Min Jae,2002-03-03,DEF,19500000,Bayern Munchen
+PLAYER,Manuel Neuer,1990-07-07,GK,6000000,Bayern Munchen
 CLUB,Borussia Dortmund,88000000,Bundesliga
 PLAYER,Maximilian Beier,2000-09-15,FWD,29000000,Borussia Dortmund
 PLAYER,Marcel Sabitzer,1996-11-28,MID,22500000,Borussia Dortmund

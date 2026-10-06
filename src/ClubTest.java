@@ -47,6 +47,74 @@ public class ClubTest {
     }
 
     @Test
+    public void testContainsPlayerTrueForOwnPlayer() {
+        Club club = new Club("Example FC", new Money(1000000));
+        Player player = new Player("Jane Doe", new Date(1, 1, 2000), "MID", new Money(1000000));
+        club.addPlayer(player);
+        assertTrue(club.containsPlayer(player));
+    }
+
+    @Test
+    public void testContainsPlayerFalseForPlayerFromAnotherClub() {
+        Club club = new Club("Example FC", new Money(1000000));
+        Player outsider = new Player("Jane Doe", new Date(1, 1, 2000), "MID", new Money(1000000));
+        assertFalse(club.containsPlayer(outsider));
+    }
+
+    @Test
+    public void testContainsPlayerFalseForEmptySquad() {
+        Club club = new Club("Example FC", new Money(1000000));
+        Player outsider = new Player("Jane Doe", new Date(1, 1, 2000), "MID", new Money(1000000));
+        assertFalse(club.containsPlayer(outsider));
+    }
+
+    @Test
+    public void testSearchPlayersByNameOneMatch() {
+        Club club = new Club("Example FC", new Money(1000000));
+        club.addPlayer(new Player("Marcus Whitfield", new Date(1, 1, 2000), "FWD", new Money(1000000)));
+        club.addPlayer(new Player("Daniel Osei", new Date(1, 1, 2000), "MID", new Money(1000000)));
+
+        ArrayList<Player> results = club.searchPlayersByName("Marcus");
+        assertEquals(1, results.size());
+        assertEquals("Marcus Whitfield", results.get(0).getName());
+    }
+
+    @Test
+    public void testSearchPlayersByNameSeveralMatches() {
+        Club club = new Club("Example FC", new Money(1000000));
+        club.addPlayer(new Player("Marcus Whitfield", new Date(1, 1, 2000), "FWD", new Money(1000000)));
+        club.addPlayer(new Player("Marcus Rashford", new Date(1, 1, 2000), "FWD", new Money(1000000)));
+
+        ArrayList<Player> results = club.searchPlayersByName("Marcus");
+        assertEquals(2, results.size());
+    }
+
+    @Test
+    public void testSearchPlayersByNameNoMatch() {
+        Club club = new Club("Example FC", new Money(1000000));
+        club.addPlayer(new Player("Daniel Osei", new Date(1, 1, 2000), "MID", new Money(1000000)));
+
+        ArrayList<Player> results = club.searchPlayersByName("Marcus");
+        assertTrue(results.isEmpty());
+    }
+
+    @Test
+    public void testSearchPlayersByNameDifferentLetterCase() {
+        Club club = new Club("Example FC", new Money(1000000));
+        club.addPlayer(new Player("Marcus Whitfield", new Date(1, 1, 2000), "FWD", new Money(1000000)));
+
+        ArrayList<Player> results = club.searchPlayersByName("MARCUS");
+        assertEquals(1, results.size());
+    }
+
+    @Test
+    public void testSearchPlayersByNameEmptySquad() {
+        Club club = new Club("Example FC", new Money(1000000));
+        ArrayList<Player> results = club.searchPlayersByName("Marcus");
+        assertTrue(results.isEmpty());
+    }
+
+    @Test
     public void testGetPlayersByPositionFiltersCorrectly() {
         Club club = new Club("Example FC", new Money(1000000));
         club.addPlayer(new Player("Keeper One", new Date(1, 1, 2000), "GK", new Money(1000000)));

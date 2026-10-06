@@ -73,6 +73,7 @@ public class Client {
         System.out.println("6. Make a transfer");
         System.out.println("7. Save to file");
         System.out.println("8. Load from file");
+        System.out.println("9. Show a club's squad");
         System.out.println("0. Exit");
         System.out.print("Choose an option: ");
     }
@@ -113,6 +114,9 @@ public class Client {
         }
         else if (choice == 8) {
             loadFromFile();
+        }
+        else if (choice == 9) {
+            showClubSquad();
         }
         else if (choice == 0) {
             return true;
@@ -160,8 +164,14 @@ public class Client {
             return;
         }
         for (int i = 0; i < players.size(); i++) {
-            System.out.println(players.get(i));
+            System.out.println(describePlayerWithClub(players.get(i)));
         }
+    }
+
+    private String describePlayerWithClub(Player player) {
+        Club club = root.findClubOfPlayer(player);
+        String clubName = club == null ? "unknown" : club.getName();
+        return player + " - club: " + clubName;
     }
 
     private void showMostValuable() {
@@ -170,7 +180,7 @@ public class Client {
             System.out.println("There are no players yet.");
             return;
         }
-        System.out.println(best);
+        System.out.println(describePlayerWithClub(best));
     }
 
     private void makeTransfer() {
@@ -209,6 +219,18 @@ public class Client {
         catch (IOException e) {
             System.out.println("Could not save to " + DATA_FILE);
         }
+    }
+
+    private void showClubSquad() {
+        System.out.print("Club name: ");
+        String name = scanner.nextLine();
+        Club club = root.findClub(name);
+        if (club == null) {
+            System.out.println("Club not found: " + name);
+            return;
+        }
+        System.out.println(club);
+        printPlayerList(club.getSquad());
     }
 
     private void loadFromFile() {

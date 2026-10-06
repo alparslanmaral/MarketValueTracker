@@ -85,6 +85,25 @@ public class Competition {
         return null;
     }
 
+    /*
+     * Checks this competition's own clubs first, then recurses into each
+     * sub-competition, so a player belonging to a deep league is still found.
+     */
+    public Club findClubOfPlayer(Player player) {
+        for (int i = 0; i < clubs.size(); i++) {
+            if (clubs.get(i).containsPlayer(player)) {
+                return clubs.get(i);
+            }
+        }
+        for (int i = 0; i < subCompetitions.size(); i++) {
+            Club found = subCompetitions.get(i).findClubOfPlayer(player);
+            if (found != null) {
+                return found;
+            }
+        }
+        return null;
+    }
+
     public Competition findCompetition(String competitionName) {
         if (name.equalsIgnoreCase(competitionName)) {
             return this;
@@ -135,14 +154,8 @@ public class Competition {
 
     public ArrayList<Player> searchPlayersByName(String text) {
         ArrayList<Player> result = new ArrayList<Player>();
-        String lowerText = text.toLowerCase();
         for (int i = 0; i < clubs.size(); i++) {
-            ArrayList<Player> squad = clubs.get(i).getSquad();
-            for (int k = 0; k < squad.size(); k++) {
-                if (squad.get(k).getName().toLowerCase().contains(lowerText)) {
-                    result.add(squad.get(k));
-                }
-            }
+            result.addAll(clubs.get(i).searchPlayersByName(text));
         }
         for (int i = 0; i < subCompetitions.size(); i++) {
             result.addAll(subCompetitions.get(i).searchPlayersByName(text));

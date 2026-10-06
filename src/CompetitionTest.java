@@ -153,6 +153,63 @@ public class CompetitionTest {
     }
 
     @Test
+    public void testFindClubOfPlayerAtTopLevel() {
+        Competition league = new Competition("League");
+        Club club = new Club("Club A", new Money(1000000));
+        Player player = new Player("Player A", new Date(1, 1, 2000), "MID", new Money(1000000));
+        club.addPlayer(player);
+        league.addClub(club);
+
+        assertSame(club, league.findClubOfPlayer(player));
+    }
+
+    @Test
+    public void testFindClubOfPlayerInDeepSubCompetition() {
+        Competition world = new Competition("World");
+        Competition europe = new Competition("Europe");
+        world.addSubCompetition(europe);
+        Club deepClub = new Club("Deep Club", new Money(1000000));
+        Player player = new Player("Deep Player", new Date(1, 1, 2000), "MID", new Money(1000000));
+        deepClub.addPlayer(player);
+        europe.addClub(deepClub);
+
+        assertSame(deepClub, world.findClubOfPlayer(player));
+    }
+
+    @Test
+    public void testFindClubOfPlayerNotFoundReturnsNull() {
+        Competition league = new Competition("League");
+        league.addClub(new Club("Club A", new Money(1000000)));
+        Player outsider = new Player("Outsider", new Date(1, 1, 2000), "MID", new Money(1000000));
+
+        assertNull(league.findClubOfPlayer(outsider));
+    }
+
+    @Test
+    public void testFindClubOfPlayerEmptyCompetitionReturnsNull() {
+        Competition league = new Competition("League");
+        Player outsider = new Player("Outsider", new Date(1, 1, 2000), "MID", new Money(1000000));
+
+        assertNull(league.findClubOfPlayer(outsider));
+    }
+
+    @Test
+    public void testFindClubOfPlayerDistinguishesSameNamePlayersInDifferentClubs() {
+        Competition league = new Competition("League");
+        Club clubA = new Club("Club A", new Money(1000000));
+        Club clubB = new Club("Club B", new Money(1000000));
+        Player playerInA = new Player("Same Name", new Date(1, 1, 2000), "MID", new Money(1000000));
+        Player playerInB = new Player("Same Name", new Date(1, 1, 2000), "MID", new Money(1000000));
+        clubA.addPlayer(playerInA);
+        clubB.addPlayer(playerInB);
+        league.addClub(clubA);
+        league.addClub(clubB);
+
+        assertSame(clubA, league.findClubOfPlayer(playerInA));
+        assertSame(clubB, league.findClubOfPlayer(playerInB));
+    }
+
+    @Test
     public void testDepthSingleLevel() {
         Competition league = new Competition("League");
         assertEquals(1, league.depth());
